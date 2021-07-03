@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css';
-import tmComponent from './Components/ticketmaster'
+import TmComponent from './Components/Ticketmaster'
 
 function App() {
   return (
     <div className="App">
-      <tmComponent />
+      <TmComponent />
     </div>
   );
 }

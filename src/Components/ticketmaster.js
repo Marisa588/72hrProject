@@ -5,7 +5,7 @@ import {
 
 let tmApiKey = "c7AGPZOyCV1Y4tUM7Nfa1OirwIRKx0VD"
 
-const tmComponent = (props) => {
+const TmComponent = (props) => {
     console.log(tmApiKey)
     return (
         <div>
@@ -18,4 +18,4 @@ const tmComponent = (props) => {
     )
 }
 
-export default tmComponent
+export default TmComponent
