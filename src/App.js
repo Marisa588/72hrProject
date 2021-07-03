@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import './Components/ticketmaster'
+import tmComponent from './Components/ticketmaster'
 
 function App() {
   return (
