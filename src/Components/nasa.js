@@ -27,39 +27,11 @@ const Nasa = () => {
 
     }, [])
 
-
-    // const [ nasaImg, setNasaImg] = useState(null);
-
-    // useEffect(() => {
-
-    //     navigator.geolocation.getCurrentPosition((position) => {
-    //         let lat = position.coords.latitude
-    //         let lng = position.coords.longitude
-
-    //         console.log(lat)
-    //         console.log(lng)
-    //     })
-
-    // }, [])
-
-
-    // const fetchNasa = () => {
-    // fetch(baseURL + "lon=-95.33&lat=29.78&date=2018-01-01&&dim=0.10&api_key=" + key)
-    // .then(res => res.json())
-    // .then(data => setNasaImg(data.url))
-    // .catch(err => console.log(err));
-    // };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     fetchNasa();
-    // }
-
     return (
         <div>
             <h1>Testing Nasa</h1>
-            {/* <Button onClick={handleSubmit}>Handle Submit</Button> */}
-            <img src={nasaImg} />
+            <h1>{lat}, {lng}</h1>
+            <img alt="Overhead shot of location based on current lat and long" src={nasaImg} />
         </div>
     )
 
