@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
 const baseURL = 'https://api.nasa.gov/planetary/earth/imagery?'
 const key = 'GhRyAVIU6OMKX2g6Odn1NkUpGWNkFLQenfVcKR4f'
 
@@ -9,7 +8,7 @@ const Nasa = (props) => {
 
     const [nasaImg, setNasaImg] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => { // can I add an if/then statement here to pull only after lat and long have been populated?
         fetch(baseURL + "lon=" + props.lng + "&lat=" + props.lat + "&date=2021-06-01&&dim=.15&api_key=" + key)
             .then(res => res.blob())
             .then(function (myBlob) {
