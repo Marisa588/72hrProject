@@ -4,8 +4,9 @@ import TmComponent from './Components/ticketmaster'
 import GeoComponent from './Components/geoLocator'
 import Nasa from './Components/nasa'
 import Weather from './Components/weather'
+import { Spinner } from 'reactstrap';
 
-function App() {
+const App = () => {
 
   const [lat, setLat] = useState('lat')
   const [lng, setLng] = useState('lng')
@@ -19,18 +20,8 @@ function App() {
   return (
     <div className="App">
       <TmComponent />
-      <GeoComponent />
- 
-    
-    
-    
-    
-    develop
-      <Nasa lat={lat} lng={lng}/>
-
-      <Nasa />
+      {typeof lat == "string" || typeof lng == "string" ? null : <Nasa lat={lat} lng={lng}/>}
       <Weather />
- Marisa
     </div>
   );
 }
