@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import TmComponent from './Components/ticketmaster'
 import GeoComponent from './Components/geoLocator'
-import Nasa from './Components/nasa'
+import Nasa from './Components/Nasa'
 
 function App() {
+
+  const [lat, setLat] = useState('lat')
+  const [lng, setLng] = useState('lng')
+
+  navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude)
+      setLng(position.coords.longitude)
+
+  })
+
   return (
     <div className="App">
       <TmComponent />
       <GeoComponent />
-      <Nasa />
+      <Nasa lat={lat} lng={lng}/>
     </div>
   );
 }
