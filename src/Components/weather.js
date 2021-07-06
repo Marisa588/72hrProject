@@ -1,60 +1,86 @@
-import React from 'react';
-//import { useState } from 'react';
- 
+import React, { useState, useEffect } from 'react';
 
- const Weather = () => { //lines 5-16 is the only code i can get to pull info
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=39.9867904&lon=-86.163456&appid=dc08a8fc02d5c6a52577cdccec773eaa`)
-    .then (res => res.json())
-    .then (data => console.log(data))
+
+
+//import geoLocation from './geoLocator'
+
+//baseURL = 'https://api.openweathermap.org/data/2.5/weather?'
+//const key = '86cc28d4b00312819c950c9c2d6c8efc'
+
+
+ 
+    const WeatherApp = (props) => {
+
+        
+     const[weather, setWeather] = useState({});
+     const [lat, setLat] = useState('lat')
+     const [lng, setLng] = useState('lng')
+   
+     navigator.geolocation.getCurrentPosition((position) => {
+         setLat(position.coords.latitude)
+         setLng(position.coords.longitude)
+     });
+   
+    
+
+
+     useEffect(() => {
+    //fetch('https://api.openweathermap.org/data/2.5/weather?lat=39.9867904&lon=-86.163456&units=imperial&appid=86cc28d4b00312819c950c9c2d6c8efc')
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + props.lat + '&lon=' + props.lng +'&units=imperial&appid=86cc28d4b00312819c950c9c2d6c8efc')
+        .then (res => res.json())
+        .then (result => setWeather(result))
+
+        
+        .catch(err => console.log(err));
+
+
+     }, []); 
+    
+    const [temp, setTemp] = useState();
+    const [unit, setUnit] = useState("F");
+    const oppositeUnit = unit === "F" ? "C" : "F";
+
+    const convert = () => {
+
+        if (unit === "F") {
+            const newT = ((temp - 32) * 5) / 9;
+            setTemp(Math.round(newT));
+            setUnit(oppositeUnit);
+        }
+
+        if (unit === "C") {
+            const newT = temp * 1.8 + 32;
+            setTemp(Math.round(newT));
+            setUnit(oppositeUnit);
+        }
+
+        
+    };
     
      return (
-         <div className= 'App'>
-             <h1> Local Weather </h1>
-             
-         </div>
-     )
- }
-
-// const Weather = () => {
-//     const [current, setCurrent] = useState()
-//     const [location, setLocation] = useState('');
-//     const fetcher = () => {
-//         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=39.9867904&lon=-86.163456&appid=dc08a8fc02d5c6a52577cdccec773eaa`)
-//         .then(res => res.json())
-//         .then(data =>console.log(data))
-//     }
-
-
-//     return(
-//         <div className= "app">
-//             <h5> {Weather[0]} </h5>
-//         </div>
-//     )
-// }
- 
+        <div className= 'weatherapp'>
+            {(typeof weather.main != "undefined") ? (
+                <div>
+                    <div className="location"> {weather.name} </div>
+                    <div className="weather-box">
+                        <div className="temp">
+                             {Math.round(weather.main.temp)}
+                              {unit}
+                            <br></br>
+                             <button onClick={convert}>Convert to {oppositeUnit}</button> 
+                        </div>
+                    <div className="weather">{weather.weather[0].main}</div>
+                </div>
+             </div>
+            ) : ('')}
+        </div>
+    );
 
 
-//     const [temperature, setTemperature] = useState("");
-//     const [lat, setlat] = useState("39.9867904");
-//     const [lng, setlng] = useState("-86.163456");
-//     const [city, setCity] = useState("Indianapolis");
-//     const [state, setState] = useState("IN");
-//     const weatherURL = 'https://api.openweathermap.org/data/2.5/onecall'
-//     const owmApiKey = "dc08a8fc02d5c6a52577cdccec773eaa"
+    }
 
-    
-//     const getWeatherData = (, state) => {
-//         fetch({
-//             method: "GET",
-//             url:`https://api.openweathermap.org/data/2.5/onecall?lat=39.9867904&lon=-86.163456&appid=dc08a8fc02d5c6a52577cdccec773eaa`
-//         })
-//             .then((response) => {
-//                 console.log(response.data);
-//             })
-//             .catch((error) => {
-//                 console.log(error)
-//             });
-//     }
-  
 
-export default Weather;
+     
+        
+
+export default WeatherApp;

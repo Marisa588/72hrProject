@@ -19,18 +19,10 @@ function App() {
   return (
     <div className="App">
       <TmComponent />
-      <GeoComponent />
- 
-    
-    
-    
-    
-    develop
       <Nasa lat={lat} lng={lng}/>
+      {/* <Weather lat={lat} lng={lng}/> */}
+      {typeof lat == "string" || typeof lng == "string" ? null : <Weather lat={lat} lng={lng}/>}
 
-      <Nasa />
-      <Weather />
- Marisa
     </div>
   );
 }
