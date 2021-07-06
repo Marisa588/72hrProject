@@ -27,7 +27,7 @@ const App = () => {
       <br />
       {typeof lat == "string" || typeof lng == "string" ? null : <Nasa lat={lat} lng={lng} />}
       <br />
-       {typeof lat == "string" || typeof lng == "string" ? null : <TmCompnent lat={lat} lng={lng} />}
+       {typeof lat == "string" || typeof lng == "string" ? null : <TmComponent lat={lat} lng={lng} />}
     </div> 
     </Container>
    

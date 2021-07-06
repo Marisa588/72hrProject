@@ -24,20 +24,20 @@ const TmComponent = (props) => {
     return (
         
         <div>
-            <h1>This is a test!</h1>
+            <h1>Events within 50 miles of your location</h1>
             <Table dark>
                 <thead>
                     <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Distance</th>
+                        <th align="left">Event Name</th>
+                        <th align="left">Distance</th>
                     </tr>    
                 </thead>
                 {/* return () */}
                 {eventData.length > 0 && eventData.map((finalEventData, index) => {
                     return (
                         <tr key={index}>
-                            <td>{finalEventData.name}</td>
+                            <td align="left">{finalEventData.name}</td>
+                            <td align="left">{finalEventData.distance} miles</td>
                         </tr>
                     )
                 })}

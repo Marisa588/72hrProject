@@ -61,9 +61,9 @@ import React, { useState, useEffect } from 'react';
         <div className= 'weatherapp'>
             {(typeof weather.main != "undefined") ? (
                 <div>
-                    <div className="location"> {weather.name} </div>
+                    <div className="location" style={{color: 'white'}}> {weather.name} </div>
                     <div className="weather-box">
-                        <div className="temp">
+                        <div className="temp" style={{color: 'white'}}>
                              {Math.round(weather.main.temp)}
                               {unit}
                             <br></br>
