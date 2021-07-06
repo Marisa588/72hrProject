@@ -21,9 +21,8 @@ const Nasa = (props) => {
 
     return (
         <div>
-            <h1>Testing Nasa</h1>
-            <h1>{props.lat}, {props.lng}</h1>
-            {typeof nasaImg == "object" ? <Spinner type="grow" color="info" /> : <img alt="Overhead shot of location based on current lat and long" src={nasaImg} />}
+            <h1>You are here:</h1>
+            {typeof nasaImg == "object" ? <Spinner type="grow" children="" color="secondary" /> : <img alt="Overhead shot of location based on current lat and long" src={nasaImg} />}
         </div>
     )
 
