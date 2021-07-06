@@ -4,23 +4,22 @@ import {
 } from 'reactstrap'
 
 const tmRootUrl = "https://app.ticketmaster.com/discovery/v2/events.json?"
-const tmApiKey = "c7AGPZOyCV1Y4tUM7Nfa1OirwIRKx0VD"
+const tmApiKey = "4CnjdPVobI1pEGhACetscWjiostGcJ3h"
+
+
 
 const TmComponent = (props) => {
 
+    const [eventData, setEventData] = useState([]);
+
     useEffect(() => {
-        async function getEvents() {
-            try {
-                const response = await fetch(
-                    `${tmRootUrl}latlong=${props.lat},${props.lng}&radius=50&unit=miles&apikey=${tmApiKey}`
-                )
-                const json = await response.json()
-                const data = json._embedded.events
-                console.log({ data })
-            } catch (error) { }
-        }
-        getEvents()
-    })
+        fetch(`${tmRootUrl}latlong=${props.lat},${props.lng}&radius=50&unit=miles&apikey=${tmApiKey}`)
+            .then(response => response.json())
+            .then(data => setEventData(data._embedded.events))
+            .catch(err => console.log(err));
+            console.log(eventData)
+    }, [])
+
 
     return (
         
@@ -34,11 +33,11 @@ const TmComponent = (props) => {
                         <th>Distance</th>
                     </tr>    
                 </thead>
-                return ()
-                {data.length > 0 && data.map((eventData, index) => {
+                {/* return () */}
+                {eventData.length > 0 && eventData.map((finalEventData, index) => {
                     return (
                         <tr key={index}>
-                            <td>{eventData.name}</td>
+                            <td>{finalEventData.name}</td>
                         </tr>
                     )
                 })}
