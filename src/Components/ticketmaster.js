@@ -1,36 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-    Table,
-    Button
+    Table
 } from 'reactstrap'
+
+const tmRootUrl = "https://app.ticketmaster.com/discovery/v2/events.json?"
+const tmApiKey = "4CnjdPVobI1pEGhACetscWjiostGcJ3h"
+
+
 
 const TmComponent = (props) => {
 
+    const [eventData, setEventData] = useState([]);
+
     useEffect(() => {
-        // API vars
-        const tmRootUrl = "https://app.ticketmaster.com/discovery/v2/"
-        const tmApiKey = "c7AGPZOyCV1Y4tUM7Nfa1OirwIRKx0VD"
-        console.log(tmApiKey)
-
-        navigator.geolocation.getCurrentPosition((position) => {
-            let lat = position.coords.latitude
-            let lng = position.coords.longitude
-
-            console.log(lat)
-            console.log(lng)
-        })
-        
+        fetch(`${tmRootUrl}latlong=${props.lat},${props.lng}&radius=50&unit=miles&apikey=${tmApiKey}`)
+            .then(response => response.json())
+            .then(data => setEventData(data._embedded.events))
+            .catch(err => console.log(err));
+            console.log(eventData)
     }, [])
 
-    // const getEvents = () => {
-    //     async function
-    // }
-    
+
     return (
+        
         <div>
             <h1>This is a test!</h1>
             <Table dark>
-
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Distance</th>
+                    </tr>    
+                </thead>
+                {/* return () */}
+                {eventData.length > 0 && eventData.map((finalEventData, index) => {
+                    return (
+                        <tr key={index}>
+                            <td>{finalEventData.name}</td>
+                        </tr>
+                    )
+                })}
             </Table>
         </div>
 

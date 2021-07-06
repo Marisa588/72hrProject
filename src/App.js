@@ -23,14 +23,15 @@ const App = () => {
       <Header />
       <hr />
       <br />
-      <Weather />
+      {typeof lat == "string" || typeof lng == "string" ? null : <Weather lat={lat} lng={lng}/>}
       <br />
       {typeof lat == "string" || typeof lng == "string" ? null : <Nasa lat={lat} lng={lng} />}
       <br />
-      <TmComponent />
+       {typeof lat == "string" || typeof lng == "string" ? null : <TmCompnent lat={lat} lng={lng} />}
     </div> 
     </Container>
    
+
   );
 }
 

@@ -47,4 +47,12 @@
 .App img {
   height: 40vmin;
   border-radius: 50%;
+
+}
+.temp {
+  display: inline-block;
+  margin: 30px auto;
+  border-radius: 16px;
+  background-color: (255, 255, 255, 0.2);
+
 }
