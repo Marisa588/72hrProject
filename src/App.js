@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
+import TmComponent from './Components/ticketmaster'
+import Nasa from './Components/nasa'
+import Weather from './Components/weather'
+import Header from './Components/header';
+import { Container } from 'reactstrap';
 
-function App() {
+const App = () => {
+
+  const [lat, setLat] = useState('lat')
+  const [lng, setLng] = useState('lng')
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    setLat(position.coords.latitude)
+    setLng(position.coords.longitude)
+
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="themed-container" fluid={true}>
+       <div className="App">
+      <Header />
+      <hr />
+      <br />
+      {typeof lat == "string" || typeof lng == "string" ? null : <Weather lat={lat} lng={lng}/>}
+      <br />
+      {typeof lat == "string" || typeof lng == "string" ? null : <Nasa lat={lat} lng={lng} />}
+      <br />
+       {typeof lat == "string" || typeof lng == "string" ? null : <TmComponent lat={lat} lng={lng} />}
+    </div> 
+    </Container>
+   
+
   );
 }
 
