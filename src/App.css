@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.weatherapp {
+  background-color: black;
+  align-content: center;
+  color:aquamarine;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.temp {
+  display: inline-block;
+  margin: 30px auto;
+  border-radius: 16px;
+  background-color: (255, 255, 255, 0.2);
+}
